@@ -1,1 +1,35 @@
-<h1>My Home Page - Página de inicio</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+
+    {% if user.is_authenticated %}
+
+    <h1>Hola mundo</h1>
+
+    {% else %}
+
+    <h1>Ingresar</h1>
+    <br />
+    <form  method="POST" action="{%  url 'home' %}">
+        {% csrf_token %}
+        <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email o nombre de usuario</label>
+              <input type="text" class="form-control" name="username" required>
+            </div>
+            <br />
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" name="password" required>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-secondary">Ingresar</button>
+          </form>
+    </form>
+</div>
+
+{% endif %}
+
+{% endblock %}
